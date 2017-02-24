@@ -17,7 +17,7 @@
             "FastD\\Utils\\": "src"
         },
         "files": [
-            "src/Support/helpers.php"
+            "helpers.php"
         ]
     }
 }

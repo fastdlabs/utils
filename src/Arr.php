@@ -10,23 +10,19 @@
 namespace FastD\Utils;
 
 
-use ArrayObject;
-
 /**
  * Class Arr
  * @package FastD\Utils
  */
-class Arr extends ArrayObject
+class Arr extends Util
 {
-    protected $array;
-
     /**
-     * @param array $array
-     * @return static
+     * Arr constructor.
+     * @param $data
      */
-    public static function create(array $array)
+    public function __construct($data)
     {
-        return new static($array);
+        parent::__construct((array) $data);
     }
 
     /**
@@ -35,8 +31,51 @@ class Arr extends ArrayObject
      */
     public function merge($array)
     {
-        $this->array += $array;
+        $merge = function ($array1, $array2) use (&$merge) {
+            foreach ($array2 as $key => $value) {
+                if (array_key_exists($key, $array1) && is_array($value)) {
+                    $array1[$key] = $merge($array1[$key], $array2[$key]);
+                } else {
+                    $array1[$key] = $value;
+                }
+            }
+
+            return $array1;
+        };
+
+        $this->data = $merge($this->data, ($array));
 
         return $this;
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function key($key)
+    {
+        try {
+            if (array_key_exists($key, $this->array)) {
+                return $this->array[$key];
+            }
+
+            if (false === strpos($name, '.')) {
+                throw new ConfigUndefinedException($name);
+            }
+
+            $keys = explode('.', $name);
+            $parameters = $this->bag;
+
+            foreach ($keys as $value) {
+                if (!array_key_exists($value, $parameters)) {
+                    throw new ConfigUndefinedException($name);
+                }
+
+                $parameters = $parameters[$value];
+            }
+            return $parameters;
+        } catch (ConfigException $e) {
+            return $default;
+        }
     }
 }
