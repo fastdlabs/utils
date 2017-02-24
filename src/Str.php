@@ -12,8 +12,12 @@ namespace FastD\Utils;
 
 class Str
 {
+    /**
+     * @param $string
+     * @return static
+     */
     public static function create($string)
     {
-        return new Str($string);
+        return new static($string);
     }
 }
