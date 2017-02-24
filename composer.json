@@ -14,7 +14,10 @@
     },
     "autoload": {
         "psr-4": {
-            "": "src"
-        }
+            "FastD\\Utils\\": "src"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
     }
 }
