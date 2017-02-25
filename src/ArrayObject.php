@@ -20,6 +20,10 @@ use Iterator;
  */
 class ArrayObject extends Util implements ArrayAccess, Iterator, Countable
 {
+    /**
+     * ArrayObject constructor.
+     * @param $data
+     */
     public function __construct($data)
     {
         parent::__construct((array) $data);

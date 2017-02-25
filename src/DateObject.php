@@ -13,8 +13,17 @@ namespace FastD\Utils;
 use DateTime;
 use DateTimeZone;
 
+/**
+ * Class DateObject
+ * @package FastD\Utils
+ */
 class DateObject extends Util
 {
+    /**
+     * DateObject constructor.
+     * @param string $data
+     * @param string $timezone
+     */
     public function __construct($data = 'now', $timezone = 'PRC')
     {
         parent::__construct(new DateTime($data, new DateTimeZone($timezone)));
@@ -37,6 +46,9 @@ class DateObject extends Util
         return $this->data->format($format);
     }
 
+    /**
+     * @return DateTimeZone
+     */
     public function getTimezone()
     {
         return $this->data->getTimezone();
