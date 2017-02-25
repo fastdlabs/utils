@@ -20,10 +20,6 @@ use Iterator;
  */
 class ArrayObject extends Util implements ArrayAccess, Iterator, Countable
 {
-    /**
-     * Arr constructor.
-     * @param $data
-     */
     public function __construct($data)
     {
         parent::__construct((array) $data);
@@ -47,9 +43,9 @@ class ArrayObject extends Util implements ArrayAccess, Iterator, Countable
             return $array1;
         };
 
-        $this->data = $merge($this->data, ($array));
+        $this->data = $merge($this->data, $array);
 
-        return $this;
+        return $this->data;
     }
 
     /**
@@ -81,9 +77,13 @@ class ArrayObject extends Util implements ArrayAccess, Iterator, Countable
         return $array;
     }
 
-    public function implode($limited)
+    /**
+     * @param $glue
+     * @return StringObject
+     */
+    public function implode($glue)
     {
-        return $this;
+        return StringObject::create(implode($glue, $this->data));
     }
 
     /**

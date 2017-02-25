@@ -11,7 +11,7 @@
 use FastD\Utils\ArrayObject;
 
 
-class ArrTest extends PHPUnit_Framework_TestCase
+class ArrayObjectTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ArrayObject
@@ -25,7 +25,7 @@ class ArrTest extends PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $this->assertEmpty($this->array->toRaw());
+        $this->assertEmpty($this->array->getData());
     }
 
     public function testMerge ()
@@ -36,7 +36,7 @@ class ArrTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals([
             'foo' => 'bar',
-        ], $this->array->toRaw());
+        ], $this->array->getData());
 
         $this->array->merge([
             'foobar' => 'zyc'
@@ -45,7 +45,7 @@ class ArrTest extends PHPUnit_Framework_TestCase
         $this->assertEquals([
             'foo' => 'bar',
             'foobar' => 'zyc'
-        ], $this->array->toRaw());
+        ], $this->array->getData());
 
         $this->array->merge([
             'database' => [
@@ -65,7 +65,7 @@ class ArrTest extends PHPUnit_Framework_TestCase
                     'foo' => 'bar'
                 ]
             ]
-        ], $this->array->toRaw());
+        ], $this->array->getData());
 
         $this->array->merge([
             'foo' => 'foobar',
@@ -88,7 +88,7 @@ class ArrTest extends PHPUnit_Framework_TestCase
                     'foobar' => 'zyc'
                 ]
             ]
-        ], $this->array->toRaw());
+        ], $this->array->getData());
     }
 
     public function testArrayKey()

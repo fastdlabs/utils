@@ -10,18 +10,35 @@
 namespace FastD\Utils;
 
 
-class Date extends Util
+use DateTime;
+use DateTimeZone;
+
+class DateObject extends Util
 {
-    public function __construct($data, $timezone = 'PRC')
+    public function __construct($data = 'now', $timezone = 'PRC')
     {
-        parent::__construct($data);
+        parent::__construct(new DateTime($data, new DateTimeZone($timezone)));
     }
 
+    /**
+     * @return int
+     */
     public function toTimestamp()
-    {}
-
-    public function format()
     {
+        return $this->data->getTimestamp();
+    }
 
+    /**
+     * @param $format
+     * @return string
+     */
+    public function format($format)
+    {
+        return $this->data->format($format);
+    }
+
+    public function getTimezone()
+    {
+        return $this->data->getTimezone();
     }
 }

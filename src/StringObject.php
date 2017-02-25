@@ -12,6 +12,12 @@ namespace FastD\Utils;
 
 class StringObject extends Util
 {
-    public function explode()
-    {}
+    /**
+     * @param $glue
+     * @return ArrayObject
+     */
+    public function explode($glue)
+    {
+        return ArrayObject::create(explode($glue, $this->data));
+    }
 }

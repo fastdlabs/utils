@@ -19,21 +19,13 @@ abstract class Util
         $this->data = $data;
     }
 
-    public function toRaw()
-    {
-        return $this->data;
-    }
-
-    public function toArray(){}
-
-    public function toJson(){}
-
-    public function toSerialize(){}
-
-    public function toBinary(){}
-
     public static function create($data = null)
     {
         return new static($data);
+    }
+
+    public function getData()
+    {
+        return $this->data;
     }
 }
