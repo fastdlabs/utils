@@ -94,6 +94,15 @@ class Arr extends Util implements ArrayAccess, Iterator, Countable
     }
 
     /**
+     * @param $key
+     * @return bool
+     */
+    public function has($key)
+    {
+        return $this->offsetExists($key);
+    }
+
+    /**
      * Return the current element
      * @link http://php.net/manual/en/iterator.current.php
      * @return mixed Can return any type.
