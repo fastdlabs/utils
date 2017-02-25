@@ -10,7 +10,7 @@
 namespace FastD\Utils;
 
 
-class Util
+abstract class Util
 {
     protected $data;
 
@@ -23,6 +23,14 @@ class Util
     {
         return $this->data;
     }
+
+    public function toArray(){}
+
+    public function toJson(){}
+
+    public function toSerialize(){}
+
+    public function toBinary(){}
 
     public static function create($data = null)
     {
