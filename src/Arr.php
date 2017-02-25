@@ -9,12 +9,16 @@
 
 namespace FastD\Utils;
 
+use ArrayAccess;
+use Countable;
+use Iterator;
+
 
 /**
  * Class Arr
  * @package FastD\Utils
  */
-class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
+class Arr extends Util implements ArrayAccess, Iterator, Countable
 {
     /**
      * Arr constructor.
@@ -97,7 +101,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function current()
     {
-        // TODO: Implement current() method.
+        return current($this->data);
     }
 
     /**
@@ -108,7 +112,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function next()
     {
-        // TODO: Implement next() method.
+        next($this->data);
     }
 
     /**
@@ -120,7 +124,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function valid()
     {
-        // TODO: Implement valid() method.
+        return isset($this->data[$this->key()]);
     }
 
     /**
@@ -131,7 +135,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function rewind()
     {
-        // TODO: Implement rewind() method.
+        reset($this->data);
     }
 
     /**
@@ -148,7 +152,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function offsetExists($offset)
     {
-        // TODO: Implement offsetExists() method.
+        return isset($this->data[$offset]);
     }
 
     /**
@@ -162,7 +166,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function offsetGet($offset)
     {
-        // TODO: Implement offsetGet() method.
+        return $this->data[$offset];
     }
 
     /**
@@ -179,7 +183,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function offsetSet($offset, $value)
     {
-        // TODO: Implement offsetSet() method.
+        $this->set($offset, $value);
     }
 
     /**
@@ -193,7 +197,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function offsetUnset($offset)
     {
-        // TODO: Implement offsetUnset() method.
+        unset($this->data[$offset]);
     }
 
     /**
@@ -207,7 +211,7 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function count()
     {
-        // TODO: Implement count() method.
+        return count($this->data);
     }
 
     /**
@@ -218,6 +222,6 @@ class Arr extends Util implements \ArrayAccess, \Iterator, \Countable
      */
     public function key()
     {
-        // TODO: Implement key() method.
+        return key($this->data);
     }
 }
