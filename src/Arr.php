@@ -51,31 +51,29 @@ class Arr extends Util
     /**
      * @param $key
      * @return mixed
+     * @throws ArrayKeyIsNotFoundException
      */
     public function key($key)
     {
-        try {
-            if (array_key_exists($key, $this->array)) {
-                return $this->array[$key];
-            }
-
-            if (false === strpos($name, '.')) {
-                throw new ConfigUndefinedException($name);
-            }
-
-            $keys = explode('.', $name);
-            $parameters = $this->bag;
-
-            foreach ($keys as $value) {
-                if (!array_key_exists($value, $parameters)) {
-                    throw new ConfigUndefinedException($name);
-                }
-
-                $parameters = $parameters[$value];
-            }
-            return $parameters;
-        } catch (ConfigException $e) {
-            return $default;
+        if (array_key_exists($key, $this->data)) {
+            return $this->data[$key];
         }
+
+        if (false === strpos($key, '.')) {
+            throw new ArrayKeyIsNotFoundException($key);
+        }
+
+        $keys = explode('.', $key);
+
+        $array = $this->data;
+        foreach ($keys as $value) {
+            if (!array_key_exists($value, $array)) {
+                throw new ArrayKeyIsNotFoundException($key);
+            }
+
+            $array = $array[$value];
+        }
+        unset($keys, $key);
+        return $array;
     }
 }

@@ -22,3 +22,17 @@ function str ($string) {
 function arr (array $array) {
     return \FastD\Utils\Arr::create($array);
 }
+
+/**
+ * @param $name
+ * @param null $value
+ * @return mixed
+ */
+function env ($name, $value = null)
+{
+    if (null === $value) {
+        return getenv($name);
+    }
+
+    return putenv(sprintf('%s=%s', $name, $value));
+}

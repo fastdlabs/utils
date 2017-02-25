@@ -90,4 +90,9 @@ class ArrTest extends PHPUnit_Framework_TestCase
             ]
         ], $this->array->toRaw());
     }
+
+    public function testArrayKey()
+    {
+
+    }
 }
