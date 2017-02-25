@@ -8,19 +8,19 @@
  */
 
 
-use FastD\Utils\Arr;
+use FastD\Utils\ArrayObject;
 
 
 class ArrTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var Arr
+     * @var ArrayObject
      */
     protected $array;
 
     public function setUp()
     {
-        $this->array = Arr::create();
+        $this->array = ArrayObject::create();
     }
 
     public function testCreate()

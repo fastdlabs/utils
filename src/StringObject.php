@@ -10,7 +10,8 @@
 namespace FastD\Utils;
 
 
-class Date
+class StringObject extends Util
 {
-
+    public function explode()
+    {}
 }

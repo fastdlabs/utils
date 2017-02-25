@@ -10,14 +10,18 @@
 namespace FastD\Utils;
 
 
-class Str
+class Date extends Util
 {
-    /**
-     * @param $string
-     * @return static
-     */
-    public static function create($string)
+    public function __construct($data, $timezone = 'PRC')
     {
-        return new static($string);
+        parent::__construct($data);
+    }
+
+    public function toTimestamp()
+    {}
+
+    public function format()
+    {
+
     }
 }

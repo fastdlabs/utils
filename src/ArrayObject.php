@@ -18,7 +18,7 @@ use Iterator;
  * Class Arr
  * @package FastD\Utils
  */
-class Arr extends Util implements ArrayAccess, Iterator, Countable
+class ArrayObject extends Util implements ArrayAccess, Iterator, Countable
 {
     /**
      * Arr constructor.
@@ -79,6 +79,11 @@ class Arr extends Util implements ArrayAccess, Iterator, Countable
         }
         unset($keys, $key);
         return $array;
+    }
+
+    public function implode($limited)
+    {
+        return $this;
     }
 
     /**
