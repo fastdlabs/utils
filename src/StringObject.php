@@ -14,15 +14,38 @@ namespace FastD\Utils;
  * Class StringObject
  * @package FastD\Utils
  */
-class StringObject extends Util
+class StringObject
 {
+    /**
+     * @var string
+     */
+    protected $string;
+
+    /**
+     * Util constructor.
+     * @param $string
+     */
+    public function __construct($string)
+    {
+        $this->string = $string;
+    }
+
+    /**
+     * @param $string
+     * @return static
+     */
+    public static function create($string)
+    {
+        return new static($string);
+    }
+
     /**
      * @param $glue
      * @return ArrayObject
      */
     public function explode($glue)
     {
-        return ArrayObject::create(explode($glue, $this->data));
+        return ArrayObject::create(explode($glue, $this->string));
     }
 
     /**
@@ -30,9 +53,9 @@ class StringObject extends Util
      * @param int $offset
      * @return bool|int
      */
-    public function strpos($needle, $offset = 0)
+    public function hasCharacter($needle, $offset = 0)
     {
-        return strpos($this->data, $needle, $offset);
+        return strpos($this->string, $needle, $offset);
     }
 
     /**
@@ -40,12 +63,17 @@ class StringObject extends Util
      */
     public function md5()
     {
-        return md5($this->data);
+        return md5($this->string);
     }
 
-    public function substr($start, $length)
+    /**
+     * @param $start
+     * @param $length
+     * @return string
+     */
+    public function cut($start, $length)
     {
-        return substr($this->data, $start, $length);
+        return substr($this->string, $start, $length);
     }
 
     /**
@@ -53,6 +81,68 @@ class StringObject extends Util
      */
     public function length()
     {
-        return strlen($this->data);
+        return strlen($this->string);
+    }
+
+    /**
+     * @param string $char
+     * @return string
+     */
+    public function trim($char = " \t\n\r\0\x0B")
+    {
+        return trim($this->string, $char);
+    }
+
+    /**
+     * @param string $char
+     * @return string
+     */
+    public function ltrim($char = " \t\n\r\0\x0B")
+    {
+        return ltrim($this->string, $char);
+    }
+
+    /**
+     * @param string $char
+     * @return string
+     */
+    public function rtrim($char = " \t\n\r\0\x0B")
+    {
+        return rtrim($this->string, $char);
+    }
+
+    /**
+     * @return string
+     */
+    public function upper()
+    {
+        return strtoupper($this->string);
+    }
+
+    /**
+     * @return string
+     */
+    public function lower()
+    {
+        return strtolower($this->string);
+    }
+
+    /**
+     * @param StringObject $stringObject
+     * @return $this
+     */
+    public function concat(StringObject $stringObject)
+    {
+        $this->string .= (string) $stringObject;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->string;
     }
 }

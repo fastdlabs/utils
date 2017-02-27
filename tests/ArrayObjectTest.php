@@ -25,7 +25,7 @@ class ArrayObjectTest extends PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $this->assertEmpty($this->array->getData());
+        $this->assertTrue($this->array->isEmpty());
     }
 
     public function testMerge ()
@@ -36,7 +36,7 @@ class ArrayObjectTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals([
             'foo' => 'bar',
-        ], $this->array->getData());
+        ], $this->array->getArrayCopy());
 
         $this->array->merge([
             'foobar' => 'zyc'
@@ -45,7 +45,7 @@ class ArrayObjectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals([
             'foo' => 'bar',
             'foobar' => 'zyc'
-        ], $this->array->getData());
+        ], $this->array->getArrayCopy());
 
         $this->array->merge([
             'database' => [
@@ -65,7 +65,7 @@ class ArrayObjectTest extends PHPUnit_Framework_TestCase
                     'foo' => 'bar'
                 ]
             ]
-        ], $this->array->getData());
+        ], $this->array->getArrayCopy());
 
         $this->array->merge([
             'foo' => 'foobar',
@@ -88,7 +88,7 @@ class ArrayObjectTest extends PHPUnit_Framework_TestCase
                     'foobar' => 'zyc'
                 ]
             ]
-        ], $this->array->getData());
+        ], $this->array->getArrayCopy());
     }
 
     public function testArrayKey()
