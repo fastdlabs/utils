@@ -93,6 +93,12 @@ class ArrayObjectTest extends PHPUnit_Framework_TestCase
 
     public function testArrayKey()
     {
+        $this->array->merge([
+            'foo' => [
+                'bar' => 'foobar'
+            ]
+        ]);
 
+        $this->assertEquals('foobar', $this->array->find('foo.bar'));
     }
 }

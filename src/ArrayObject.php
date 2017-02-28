@@ -72,18 +72,18 @@ class ArrayObject extends \ArrayObject
             throw new \LogicException(sprintf('Array Undefined key %s', $key));
         }
 
+        $value = $this->getArrayCopy();
         $keys = explode('.', $key);
-
-        $array = $this->data;
-        foreach ($keys as $value) {
-            if (!$this->offsetExists($key)) {
+        foreach ($keys as $name) {
+            if (!isset($value[$name])) {
                 throw new \LogicException(sprintf('Array Undefined key %s', $key));
             }
 
-            $array = $array[$value];
+            $value = $value[$name];
         }
         unset($keys, $key);
-        return $array;
+        
+        return $value;
     }
 
     /**
