@@ -82,7 +82,7 @@ class ArrayObject extends \ArrayObject
             $value = $value[$name];
         }
         unset($keys, $key);
-        
+
         return $value;
     }
 

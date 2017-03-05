@@ -9,18 +9,18 @@
 
 /**
  * @param $string
- * @return \FastD\Utils\Str
+ * @return \FastD\Utils\StringObject
  */
 function str ($string) {
-    return \FastD\Utils\Str::create($string);
+    return \FastD\Utils\StringObject::create($string);
 }
 
 /**
  * @param array $array
- * @return \FastD\Utils\Arr
+ * @return \FastD\Utils\ArrayObject
  */
 function arr (array $array) {
-    return \FastD\Utils\Arr::create($array);
+    return \FastD\Utils\ArrayObject::create($array);
 }
 
 /**
