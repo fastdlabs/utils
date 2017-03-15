@@ -11,7 +11,8 @@
  * @param $string
  * @return \FastD\Utils\StringObject
  */
-function str ($string) {
+function stringObject($string)
+{
     return \FastD\Utils\StringObject::create($string);
 }
 
@@ -19,7 +20,8 @@ function str ($string) {
  * @param array $array
  * @return \FastD\Utils\ArrayObject
  */
-function arr (array $array) {
+function arrayObject(array $array)
+{
     return \FastD\Utils\ArrayObject::create($array);
 }
 
@@ -28,7 +30,7 @@ function arr (array $array) {
  * @param null $value
  * @return mixed
  */
-function env ($name, $value = null)
+function env($name, $value = null)
 {
     if (null === $value) {
         return getenv($name);
