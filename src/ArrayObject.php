@@ -17,15 +17,6 @@ namespace FastD\Utils;
 class ArrayObject extends \ArrayObject
 {
     /**
-     * @param array $array
-     * @return static
-     */
-    public static function create(array $array = [])
-    {
-        return new static($array);
-    }
-
-    /**
      * @return bool
      */
     public function isEmpty()
@@ -92,7 +83,7 @@ class ArrayObject extends \ArrayObject
      */
     public function implode($glue)
     {
-        return StringObject::create(implode($glue, $this->data));
+        return stringObject(implode($glue, $this->data));
     }
 
     /**
@@ -110,12 +101,21 @@ class ArrayObject extends \ArrayObject
 
     /**
      * @param $key
+     * @return mixed
+     */
+    public function get($key)
+    {
+        return $this->offsetGet($key);
+    }
+
+    /**
+     * @param $key
      * @param $value
      * @return $this
      */
     public function set($key, $value)
     {
-        $this->data[$key] = $value;
+        $this->offsetSet($key, $value);
 
         return $this;
     }

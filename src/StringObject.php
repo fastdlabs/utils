@@ -31,21 +31,12 @@ class StringObject
     }
 
     /**
-     * @param $string
-     * @return static
-     */
-    public static function create($string)
-    {
-        return new static($string);
-    }
-
-    /**
      * @param $glue
      * @return ArrayObject
      */
     public function explode($glue)
     {
-        return ArrayObject::create(explode($glue, $this->string));
+        return arrayObject(explode($glue, $this->string));
     }
 
     /**

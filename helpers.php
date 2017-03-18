@@ -11,18 +11,18 @@
  * @param $string
  * @return \FastD\Utils\StringObject
  */
-function stringObject($string)
+function stringObject($string = '')
 {
-    return \FastD\Utils\StringObject::create($string);
+    return new \FastD\Utils\StringObject($string);
 }
 
 /**
  * @param array $array
  * @return \FastD\Utils\ArrayObject
  */
-function arrayObject(array $array)
+function arrayObject(array $array = [])
 {
-    return \FastD\Utils\ArrayObject::create($array);
+    return new \FastD\Utils\ArrayObject($array);
 }
 
 /**
