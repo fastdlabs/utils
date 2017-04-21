@@ -19,6 +19,15 @@ use DateTime;
 class DateObject extends DateTime
 {
     /**
+     * @param $timestamp
+     * @return static
+     */
+    public static function createFromTimestamp($timestamp)
+    {
+        return new static(date('Y-m-d H:i:s', $timestamp));
+    }
+
+    /**
      * @return string
      */
     public function ago()
