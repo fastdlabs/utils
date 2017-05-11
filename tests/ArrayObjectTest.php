@@ -89,6 +89,35 @@ class ArrayObjectTest extends PHPUnit_Framework_TestCase
                 ]
             ]
         ], $this->array->getArrayCopy());
+
+
+        $this->array->merge([
+            'foo' => null,
+        ]);
+
+        $this->array->merge([
+            'foo' => [
+                'bar' => 'var',
+            ],
+        ]);
+
+        $this->assertSame(
+            [
+                'foo' => [
+                    0 => NULL,
+                    'bar' => 'var',
+                ],
+                'foobar' => 'zyc',
+                'database' => [
+                    'host' => '127.0.0.1',
+                    'options' => [
+                        'foo' => 'bar',
+                        'foobar' => 'zyc',
+                    ],
+                ],
+            ],
+            $this->array->getArrayCopy()
+        );
     }
 
     public function testArrayKey()

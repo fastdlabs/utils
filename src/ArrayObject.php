@@ -33,7 +33,12 @@ class ArrayObject extends \ArrayObject
         $merge = function ($array1, $array2) use (&$merge) {
             foreach ($array2 as $key => $value) {
                 if (array_key_exists($key, $array1) && is_array($value)) {
-                    $array1[$key] = $merge($array1[$key], $array2[$key]);
+                    if (is_array($array1[$key])) {
+                        $array1[$key] = $merge($array1[$key], $value);
+                    } else {
+                        array_unshift($value, $array1[$key]);
+                        $array1[$key] = $value;
+                    }
                 } else {
                     $array1[$key] = $value;
                 }
