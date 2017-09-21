@@ -34,8 +34,10 @@ class ArrayObject extends \ArrayObject
             foreach ($array2 as $key => $value) {
                 if (array_key_exists($key, $array1) && is_array($value)) {
                     $array1[$key] = $merge($array1[$key], $array2[$key]);
-                } else {
+                } else if (is_string($key)) {
                     $array1[$key] = $value;
+                } else {
+                    $array1[] = $value;
                 }
             }
 
