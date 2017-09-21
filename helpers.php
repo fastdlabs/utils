@@ -7,34 +7,41 @@
  * @link      http://www.fast-d.cn/
  */
 
-/**
- * @param $string
- * @return \FastD\Utils\StringObject
- */
-function stringObject($string = '')
-{
-    return new \FastD\Utils\StringObject($string);
+if (!function_exists('stringObject')) {
+    /**
+     * @param $string
+     * @return \FastD\Utils\StringObject
+     */
+    function stringObject($string = '')
+    {
+        return new \FastD\Utils\StringObject($string);
+    }
 }
 
-/**
- * @param array $array
- * @return \FastD\Utils\ArrayObject
- */
-function arrayObject(array $array = [])
-{
-    return new \FastD\Utils\ArrayObject($array);
+if (!function_exists('arrayObject')) {
+    /**
+     * @param array $array
+     * @return \FastD\Utils\ArrayObject
+     */
+    function arrayObject(array $array = [])
+    {
+        return new \FastD\Utils\ArrayObject($array);
+    }
 }
 
-/**
- * @param $name
- * @param null $value
- * @return mixed
- */
-function env($name, $value = null)
-{
-    if (null === $value) {
-        return getenv($name);
+if (!function_exists('env')) {
+    /**
+     * @param $name
+     * @param null $value
+     * @return mixed
+     */
+    function env($name, $value = null)
+    {
+        if (null === $value) {
+            return getenv($name);
+        }
+
+        return putenv(sprintf('%s=%s', $name, $value));
     }
 
-    return putenv(sprintf('%s=%s', $name, $value));
 }
