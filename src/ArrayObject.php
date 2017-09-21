@@ -33,11 +33,18 @@ class ArrayObject extends \ArrayObject
         $merge = function ($array1, $array2) use (&$merge) {
             foreach ($array2 as $key => $value) {
                 if (array_key_exists($key, $array1) && is_array($value)) {
-                    $array1[$key] = $merge($array1[$key], $array2[$key]);
-                } else if (is_string($key)) {
-                    $array1[$key] = $value;
+                    if (is_array($array1[$key])) {
+                        $array1[$key] = $merge($array1[$key], $value);
+                    } else {
+                        array_unshift($value, $array1[$key]);
+                        $array1[$key] = $value;
+                    }
                 } else {
-                    $array1[] = $value;
+                    if (is_string($key)) {
+                        $array1[$key] = $value;
+                    } else {
+                        $array1[] = $value;
+                    }
                 }
             }
 
@@ -68,7 +75,7 @@ class ArrayObject extends \ArrayObject
         $value = $this->getArrayCopy();
         $keys = explode('.', $key);
         foreach ($keys as $name) {
-            if (!isset($value[$name])) {
+            if ( ! isset($value[$name])) {
                 throw new \LogicException(sprintf('Array Undefined key %s', $key));
             }
 
