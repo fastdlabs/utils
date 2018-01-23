@@ -12,50 +12,50 @@ namespace FastD\Utils;
 
 use SplFileObject;
 
+/**
+ * Class FileObject
+ * @package FastD\Utils
+ */
 class FileObject extends SplFileObject
 {
-    protected $exists = true;
+    use MakeTrait;
 
-    protected $filename;
+    const DEFAULT_MODE = 'r';
 
+    /**
+     * FileObject constructor.
+     * @param $filename
+     * @param string $mode
+     * @param bool $include
+     * @param null $context
+     */
     public function __construct($filename, $mode = 'r', $include = false, $context = null)
     {
-        $this->filename = $filename;
-
         if (!file_exists($filename)) {
-            $this->exists = false;
-            $filename = 'php://temp';
+            $parentDir = dirname($filename);
+            if (!file_exists($parentDir)) {
+                mkdir($parentDir, 0755, true);
+            }
+            touch($filename);
         }
 
         parent::__construct($filename, $mode, $include, $context);
     }
 
     /**
-     * @return bool
+     * @param $data
+     * @return static
      */
-    public function isExists()
+    public function make($data)
     {
-        return $this->exists;
-    }
-
-    /**
-     * @param $mode
-     * @param $recursion
-     * @return bool
-     */
-    public function make($mode = 0755, $recursion = true)
-    {
-        if (!file_exists(dirname($recursion))) {
-            mkdir(dirname($recursion), $mode, $recursion);
+        if (is_string($data)) {
+            $filename = $data;
+            $mode = static::DEFAULT_MODE;
+        } else {
+            $filename = $data['file'];
+            $mode = $data['mode'];
         }
 
-        if (true === touch($this->filename)) {
-            $this->exists = true;
-            print_r($this);
-            $this->__construct($this->filename);
-            return true;
-        }
-
-        return false;
+        return new static($filename, $mode);
     }
 }

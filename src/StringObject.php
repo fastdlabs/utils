@@ -16,6 +16,8 @@ namespace FastD\Utils;
  */
 class StringObject
 {
+    use MakeTrait;
+
     /**
      * @var string
      */
@@ -36,7 +38,7 @@ class StringObject
      */
     public function explode($glue)
     {
-        return arrayObject(explode($glue, $this->string));
+        return ArrayObject::make(explode($glue, $this->string));
     }
 
     /**

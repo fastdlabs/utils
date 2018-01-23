@@ -18,11 +18,13 @@ use DateTime;
  */
 class DateObject extends DateTime
 {
+    use MakeTrait;
+
     /**
      * @param $timestamp
-     * @return static
+     * @return DateObject
      */
-    public static function createFromTimestamp($timestamp)
+    public static function makeFromTimestamp($timestamp)
     {
         return new static(date('Y-m-d H:i:s', $timestamp));
     }
@@ -47,10 +49,10 @@ class DateObject extends DateTime
                      '86400' => '天',
                      '3600' => '小时',
                      '60' => '分钟',
-                     '1' => '秒'
+                     '1' => '秒',
                  ] as $key => $value) {
             if (0 != $c = floor(abs($diff) / (int)$key)) {
-                return $c . $value . $tag;
+                return $c.$value.$tag;
             }
         }
 
@@ -80,7 +82,7 @@ class DateObject extends DateTime
     {
         $date = $this->format('Y-m-d');
 
-        return new static(date('Y-m-d', strtotime($date . ' +1 month -1 day')));
+        return new static(date('Y-m-d', strtotime($date.' +1 month -1 day')));
     }
 
     /**
@@ -92,7 +94,7 @@ class DateObject extends DateTime
 
         $week = $this->format('w');
 
-        return new static(date('Y-m-d',strtotime("$date -".($week ? $week - 1 : 6).' days')));
+        return new static(date('Y-m-d', strtotime("$date -".($week ? $week - 1 : 6).' days')));
     }
 
     /**
@@ -100,6 +102,6 @@ class DateObject extends DateTime
      */
     public function getWeekLastDay()
     {
-        return new static(date('Y-m-d',strtotime($this->getWeekFirstDay()->format('Y-m-d') .' +6 days')));
+        return new static(date('Y-m-d', strtotime($this->getWeekFirstDay()->format('Y-m-d').' +6 days')));
     }
 }

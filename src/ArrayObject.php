@@ -10,12 +10,16 @@
 namespace FastD\Utils;
 
 
+use ArrayObject as SPLArray;
+
 /**
- * Class Arr
+ * Class ArrayObject
  * @package FastD\Utils
  */
-class ArrayObject extends \ArrayObject
+class ArrayObject extends SPLArray
 {
+    use MakeTrait;
+
     /**
      * @return bool
      */
@@ -26,7 +30,7 @@ class ArrayObject extends \ArrayObject
 
     /**
      * @param $array
-     * @return $this
+     * @return static
      */
     public function merge($array)
     {
@@ -92,7 +96,7 @@ class ArrayObject extends \ArrayObject
      */
     public function implode($glue)
     {
-        return stringObject(implode($glue, $this->data));
+        return StringObject::make(implode($glue, $this->data));
     }
 
     /**

@@ -16,6 +16,8 @@ namespace FastD\Utils;
  */
 class EnvironmentObject
 {
+    use MakeTrait;
+
     /**
      * @return bool
      */

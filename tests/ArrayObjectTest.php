@@ -20,7 +20,7 @@ class ArrayObjectTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->array = arrayObject();
+        $this->array = ArrayObject::make();
     }
 
     public function testCreate()
