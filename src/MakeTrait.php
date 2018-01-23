@@ -19,7 +19,7 @@ trait MakeTrait
      * @param $data
      * @return static
      */
-    public function make($data = [])
+    public static function make($data = [])
     {
         return new static($data);
     }
