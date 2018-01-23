@@ -1,5 +1,7 @@
 # utils
 
+[![Build Status](https://travis-ci.org/fastdlabs/utils.svg?branch=master)](https://travis-ci.org/fastdlabs/utils)
+
 常用操作工具库
 
 ### Support
