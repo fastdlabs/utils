@@ -1,10 +1,10 @@
 <?php
 /**
  * @author    jan huang <bboyjanhuang@gmail.com>
- * @copyright 2016
+ * @copyright 2018
  *
- * @link      https://www.github.com/janhuang
- * @link      http://www.fast-d.cn/
+ * @link      https://www.github.com/fastdlabs
+ * @link      https://fastdlabs.com/
  */
 
 namespace FastD\Utils;
@@ -24,7 +24,7 @@ class DateObject extends DateTime
      * @param $timestamp
      * @return DateObject
      */
-    public static function makeFromTimestamp($timestamp)
+    public static function makeFromTimestamp($timestamp): DateObject
     {
         return new static(date('Y-m-d H:i:s', $timestamp));
     }
@@ -32,7 +32,7 @@ class DateObject extends DateTime
     /**
      * @return string
      */
-    public function ago()
+    public function ago(): string
     {
         $diff = time() - $this->getTimestamp();
 
@@ -62,23 +62,23 @@ class DateObject extends DateTime
     /**
      * @return string
      */
-    public function getMonthTotalDay()
+    public function getMonthTotalDay(): string
     {
         return $this->format('t');
     }
 
     /**
-     * @return static
+     * @return DateObject
      */
-    public function getMonthFirstDay()
+    public function getMonthFirstDay(): DateObject
     {
         return new static(date('Y-m-01', $this->getTimestamp()));
     }
 
     /**
-     * @return static
+     * @return DateObject
      */
-    public function getMonthLastDay()
+    public function getMonthLastDay(): DateObject
     {
         $date = $this->format('Y-m-d');
 
@@ -86,9 +86,9 @@ class DateObject extends DateTime
     }
 
     /**
-     * @return static
+     * @return DateObject
      */
-    public function getWeekFirstDay()
+    public function getWeekFirstDay(): DateObject
     {
         $date = $this->format('Y-m-d');
 
@@ -98,9 +98,9 @@ class DateObject extends DateTime
     }
 
     /**
-     * @return static
+     * @return DateObject
      */
-    public function getWeekLastDay()
+    public function getWeekLastDay(): DateObject
     {
         return new static(date('Y-m-d', strtotime($this->getWeekFirstDay()->format('Y-m-d').' +6 days')));
     }

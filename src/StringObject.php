@@ -1,10 +1,10 @@
 <?php
 /**
  * @author    jan huang <bboyjanhuang@gmail.com>
- * @copyright 2016
+ * @copyright 2018
  *
- * @link      https://www.github.com/janhuang
- * @link      http://www.fast-d.cn/
+ * @link      https://www.github.com/fastdlabs
+ * @link      https://fastdlabs.com/
  */
 
 namespace FastD\Utils;
@@ -36,7 +36,7 @@ class StringObject
      * @param $glue
      * @return ArrayObject
      */
-    public function explode($glue)
+    public function explode($glue): ArrayObject
     {
         return ArrayObject::make(explode($glue, $this->string));
     }
@@ -44,17 +44,17 @@ class StringObject
     /**
      * @param $needle
      * @param int $offset
-     * @return bool|int
+     * @return bool
      */
-    public function hasCharacter($needle, $offset = 0)
+    public function hasCharacter($needle, $offset = 0): bool
     {
-        return strpos($this->string, $needle, $offset);
+        return false === strpos($this->string, $needle, $offset);
     }
 
     /**
      * @return string
      */
-    public function md5()
+    public function md5(): string
     {
         return md5($this->string);
     }
@@ -64,7 +64,7 @@ class StringObject
      * @param $length
      * @return string
      */
-    public function cut($start, $length)
+    public function cut($start, $length): string
     {
         return substr($this->string, $start, $length);
     }
@@ -72,7 +72,7 @@ class StringObject
     /**
      * @return int
      */
-    public function length()
+    public function length(): int
     {
         return strlen($this->string);
     }
@@ -81,7 +81,7 @@ class StringObject
      * @param string $char
      * @return string
      */
-    public function trim($char = " \t\n\r\0\x0B")
+    public function trim($char = " \t\n\r\0\x0B"): string
     {
         return trim($this->string, $char);
     }
@@ -90,7 +90,7 @@ class StringObject
      * @param string $char
      * @return string
      */
-    public function ltrim($char = " \t\n\r\0\x0B")
+    public function ltrim($char = " \t\n\r\0\x0B"): string
     {
         return ltrim($this->string, $char);
     }
@@ -99,7 +99,7 @@ class StringObject
      * @param string $char
      * @return string
      */
-    public function rtrim($char = " \t\n\r\0\x0B")
+    public function rtrim($char = " \t\n\r\0\x0B"): string
     {
         return rtrim($this->string, $char);
     }
@@ -107,7 +107,7 @@ class StringObject
     /**
      * @return string
      */
-    public function upper()
+    public function upper(): string
     {
         return strtoupper($this->string);
     }
@@ -115,7 +115,7 @@ class StringObject
     /**
      * @return string
      */
-    public function lower()
+    public function lower(): string
     {
         return strtolower($this->string);
     }
@@ -124,7 +124,7 @@ class StringObject
      * @param StringObject $stringObject
      * @return $this
      */
-    public function concat(StringObject $stringObject)
+    public function concat(StringObject $stringObject): StringObject
     {
         $this->string .= (string) $stringObject;
 
@@ -134,7 +134,7 @@ class StringObject
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->string;
     }

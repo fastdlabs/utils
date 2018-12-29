@@ -1,10 +1,10 @@
 <?php
 /**
  * @author    jan huang <bboyjanhuang@gmail.com>
- * @copyright 2016
+ * @copyright 2018
  *
- * @see      https://www.github.com/janhuang
- * @see      http://www.fast-d.cn/
+ * @see      https://www.github.com/fastdlabs
+ * @see      https://fastdlabs.com/
  */
 
 namespace FastD\Utils;
@@ -21,12 +21,15 @@ class EnvironmentObject
     /**
      * @return bool
      */
-    public function isCli()
+    public function isCli(): bool
     {
         return 'cli' === php_sapi_name();
     }
 
-    public function isLocal()
+    /**
+     * @return bool
+     */
+    public function isLocal(): bool
     {
         return '127.0.0.1' === $this->getLocalIp();
     }
@@ -34,7 +37,7 @@ class EnvironmentObject
     /**
      * @return string
      */
-    public function getHostName()
+    public function getHostName(): string
     {
         return gethostname();
     }
@@ -42,7 +45,7 @@ class EnvironmentObject
     /**
      * @return string
      */
-    public function getLocalIp()
+    public function getLocalIp(): string
     {
         return gethostbyname($this->getHostName());
     }

@@ -1,16 +1,17 @@
 <?php
 /**
  * @author    jan huang <bboyjanhuang@gmail.com>
- * @copyright 2016
+ * @copyright 2018
  *
- * @link      https://www.github.com/janhuang
- * @link      http://www.fast-d.cn/
+ * @link      https://www.github.com/fastdlabs
+ * @link      https://fastdlabs.com/
  */
 
 namespace FastD\Utils;
 
 
 use ArrayObject as SPLArray;
+use LogicException;
 
 /**
  * Class ArrayObject
@@ -23,16 +24,16 @@ class ArrayObject extends SPLArray
     /**
      * @return bool
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
         return 0 >= $this->count();
     }
 
     /**
      * @param $array
-     * @return static
+     * @return ArrayObject
      */
-    public function merge($array)
+    public function merge($array): ArrayObject
     {
         $merge = function ($array1, $array2) use (&$merge) {
             foreach ($array2 as $key => $value) {
@@ -73,14 +74,14 @@ class ArrayObject extends SPLArray
         }
 
         if (false === strpos($key, '.')) {
-            throw new \LogicException(sprintf('Array Undefined key %s', $key));
+            throw new LogicException(sprintf('Array Undefined key %s', $key));
         }
 
         $value = $this->getArrayCopy();
         $keys = explode('.', $key);
         foreach ($keys as $name) {
             if ( ! isset($value[$name])) {
-                throw new \LogicException(sprintf('Array Undefined key %s', $key));
+                throw new LogicException(sprintf('Array Undefined key %s', $key));
             }
 
             $value = $value[$name];
@@ -94,16 +95,16 @@ class ArrayObject extends SPLArray
      * @param $glue
      * @return StringObject
      */
-    public function implode($glue)
+    public function implode($glue): StringObject
     {
         return StringObject::make(implode($glue, $this->data));
     }
 
     /**
      * @param ArrayObject $arrayObject
-     * @return $this
+     * @return ArrayObject
      */
-    public function combine(ArrayObject $arrayObject)
+    public function combine(ArrayObject $arrayObject): ArrayObject
     {
         $array = array_combine(array_keys($this->getArrayCopy()), array_values($arrayObject->getArrayCopy()));
 
@@ -124,9 +125,9 @@ class ArrayObject extends SPLArray
     /**
      * @param $key
      * @param $value
-     * @return $this
+     * @return ArrayObject
      */
-    public function set($key, $value)
+    public function set($key, $value): ArrayObject
     {
         $this->offsetSet($key, $value);
 
@@ -137,7 +138,7 @@ class ArrayObject extends SPLArray
      * @param $key
      * @return bool
      */
-    public function has($key)
+    public function has($key): bool
     {
         return $this->offsetExists($key);
     }
