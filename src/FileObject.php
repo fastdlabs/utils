@@ -46,7 +46,7 @@ class FileObject extends SplFileObject
      * @param $data
      * @return FileObject
      */
-    public function make($data): FileObject
+    public static function make($data): FileObject
     {
         if (is_string($data)) {
             $filename = $data;
